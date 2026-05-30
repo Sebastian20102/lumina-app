@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #08090D;
+  --foreground: #F9FAFB;
+  --surface: #0F1117;
+  --card: rgba(17, 24, 39, 0.7);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #F9FAFB;
+  --subtext: #9CA3AF;
+  --accent: #7C3AED;
+  --secondary: #06B6D4;
+}
+
+.light {
+  --background: #f9fafb;
+  --foreground: #111827;
+  --surface: #ffffff;
+  --card: rgba(255, 255, 255, 0.8);
+  --border: rgba(0, 0, 0, 0.08);
+  --text: #111827;
+  --subtext: #4b5563;
+  --accent: #6d28d9;
+  --secondary: #0891b2;
+}
+
+body {
+  color: var(--text);
+  background: var(--background);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card backdrop-blur-md border border-border rounded-2xl shadow-2xl;
+  }
+  
+  .premium-gradient {
+    @apply bg-gradient-to-br from-accent via-accent/80 to-secondary;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60;
+  }
+
+  .btn-premium {
+    @apply relative px-8 py-4 rounded-2xl font-bold transition-all duration-300 
+           bg-accent hover:scale-105 active:scale-95 shadow-lg shadow-accent/20
+           flex items-center justify-center gap-2 overflow-hidden;
+  }
+
+  .btn-premium::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full transition-transform duration-500;
+  }
+
+  .btn-premium:hover::after {
+    @apply translate-x-full;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 3s infinite;
+  }
+
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(-5%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+}
+
+/* Custom Scrollbar Linear Style */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
